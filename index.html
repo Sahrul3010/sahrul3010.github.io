@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Selamat Ulang Tahun Vira!</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      perspective: 800px;
+      overflow: hidden;
+    }
+
+    .confetti, .balloon {
+      position: absolute;
+      z-index: 0;
+    }
+
+    .confetti {
+      width: 12px;
+      height: 12px;
+      background-color: red;
+      border-radius: 2px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      animation: fall3d 5s linear infinite;
+    }
+
+    @keyframes fall3d {
+      0% {
+        transform: translate3d(0, 0, 0) rotateX(0) rotateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translate3d(0, 100vh, 200px) rotateX(720deg) rotateY(720deg);
+        opacity: 0;
+      }
+    }
+
+    .balloon {
+      width: 40px;
+      height: 50px;
+      background: radial-gradient(circle at 30% 30%, #fff, var(--balloon-color));
+      border-radius: 50% 50% 45% 45%;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      animation: fly3d 6s ease-in infinite;
+      transform-style: preserve-3d;
+    }
+
+    @keyframes fly3d {
+      0% {
+        transform: translateY(100vh) translateZ(-100px) rotateY(0deg);
+        opacity: 0;
+      }
+      30% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) translateZ(200px) rotateY(360deg);
+        opacity: 0;
+      }
+    }
+
+    .fade-out {
+      animation: fadeOut 0.8s forwards;
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(0.8); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .envelope:hover {
+      transform: scale(1.05);
+    }
+
+    .gombal {
+      animation: fadeIn 1.5s ease forwards;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-pink-100 to-pink-200 h-screen flex items-center justify-center text-center relative">
+
+  <!-- Amplop Awal -->
+  <div id="amplopSection" class="flex flex-col items-center z-20 transition-all">
+    <img src="assets/images/envelope.png" alt="Amplop" class="w-64 h-64 envelope cursor-pointer animate-bounce" onclick="bukaUcapan()" />
+    <p class="mt-4 text-2xl text-white font-semibold">Pencet Amplop nya sayangg</p>
+  </div>
+
+  <!-- Ucapan Ultah -->
+  <div id="ucapanSection" class="hidden flex-col items-center z-10 max-w-md bg-white p-8 rounded-3xl shadow-xl text-center opacity-0 scale-90">
+    <h1 class="text-4xl font-extrabold text-pink-600 mb-4">Selamat Ulang Tahun 🎉</h1>
+    <p class="text-xl text-gray-800 font-medium">Untuk yang paling spesial,</p>
+    <p class="text-xl text-pink-700 mt-2">sayangg kuu...</p>
+    <p class="text-2xl font-bold text-pink-700 mt-1">Vira Khoirunnisa Azzahra 💖</p>
+    <p class="mt-4 text-gray-600">Semoga panjang umur, sehat selalu, dan segala cita-citanya tercapai! 🌸</p>
+    <p class="mt-6 text-pink-600 italic gombal text-lg font-medium opacity-0">Kalau ulang tahunmu seromantis ini, aku rela ulang tahun tiap hari... asal kamu yang rayain 🥺🎂</p>
+  </div>
+
+  <!-- Container untuk confetti & balon -->
+  <div id="confetti-container" class="absolute inset-0 pointer-events-none z-0"></div>
+
+  <!-- Audio -->
+  <audio id="audioPlayer" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+
+  <!-- Script -->
+  <script>
+    function bukaUcapan() {
+      const amplop = document.getElementById("amplopSection");
+      const ucapan = document.getElementById("ucapanSection");
+      const audio = document.getElementById("audioPlayer");
+
+      amplop.classList.add("fade-out");
+
+      setTimeout(() => {
+        amplop.style.display = "none";
+        ucapan.classList.remove("hidden");
+        ucapan.classList.add("fade-in");
+
+        // Play audio
+        audio.play();
+
+        // Tampilkan confetti dan balon
+        buatConfetti(60);
+        buatBalon(15);
+
+        // Tampilkan gombalan setelah animasi selesai
+        setTimeout(() => {
+          document.querySelector(".gombal").classList.remove("opacity-0");
+        }, 1200);
+      }, 800);
+    }
+
+    function buatConfetti(jumlah = 100) {
+      const container = document.getElementById("confetti-container");
+      for (let i = 0; i < jumlah; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.top = "-" + Math.random() * 20 + "vh";
+        confetti.style.animationDuration = 3 + Math.random() * 2 + "s";
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+        container.appendChild(confetti);
+      }
+    }
+
+    function buatBalon(jumlah = 10) {
+      const container = document.getElementById("confetti-container");
+      for (let i = 0; i < jumlah; i++) {
+        const balloon = document.createElement("div");
+        balloon.classList.add("balloon");
+        balloon.style.left = Math.random() * 100 + "vw";
+        balloon.style.top = "100vh";
+        balloon.style.setProperty('--balloon-color', `hsl(${Math.random() * 360}, 80%, 70%)`);
+        balloon.style.animationDelay = Math.random() * 3 + "s";
+        container.appendChild(balloon);
+      }
+    }
+  </script>
+
+</body>
+</html>
