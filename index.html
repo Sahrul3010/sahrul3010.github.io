@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Untuk Vira Khairunnisa Azzahra 💖</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .romantic-font {
+      font-family: 'Pacifico', cursive;
+    }
+
+    .flower {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-50px) rotate(0); }
+      100% { transform: translateY(110vh) rotate(360deg); }
+    }
+  </style>
+</head>
+<body class="bg-pink-50 min-h-screen overflow-x-hidden relative">
+
+  <!-- Bunga jatuh -->
+  <div class="flower" style="left: 10%; animation-duration: 8s;">🌸</div>
+  <div class="flower" style="left: 30%; animation-duration: 10s;">💗</div>
+  <div class="flower" style="left: 50%; animation-duration: 7s;">🌸</div>
+  <div class="flower" style="left: 70%; animation-duration: 9s;">💖</div>
+  <div class="flower" style="left: 90%; animation-duration: 11s;">🌸</div>
+
+  <!-- Musik -->
+  <audio id="romanticMusic" src="assets/music/song.mp3" loop></audio>
+
+  <!-- Hero Section -->
+  <section class="w-full h-screen flex flex-col justify-center items-center text-center px-4 bg-gradient-to-b from-pink-100 to-white">
+    <h1 id="greeting" class="text-4xl md:text-6xl font-bold text-pink-700 romantic-font mb-4 opacity-0">
+      Hai Sayang Kuuu 💖
+    </h1>
+    <p id="intro" class="text-lg md:text-xl text-gray-700 max-w-xl opacity-0 pt-3">
+      Hari ini tanggal 1 Agustus... Hari Pacar Nasional. Dan kamu, adalah segalanya yang kupikirkan hari ini.
+    </p>
+    <button onclick="playMusic()" class="mt-6 px-6 py-2 bg-pink-500 text-white rounded-xl hover:bg-pink-600 transition-all">Mainkan Musik 🎶</button>
+  </section>
+
+  <!-- Surat Cinta -->
+  <section class="max-w-2xl px-6 py-10 text-center">
+    <div id="letter" class="bg-white shadow-lg p-6 rounded-2xl border border-pink-200 opacity-0">
+      <h2 class="text-2xl text-pink-600 romantic-font mb-4">Untuk Vira yang paling aku sayang,</h2>
+      <p class="text-gray-700 text-base leading-relaxed">
+        Terima kasih telah hadir dan mengisi hariku dengan senyum yang selalu membuatku tenang.
+        Setiap detik bersamamu terasa istimewa. Hari ini, aku ingin kamu tahu…
+        Aku mencintaimu, bukan hanya karena siapa kamu, tapi karena siapa aku saat bersamamu. ❤️
+      </p>
+      <p class="mt-6 text-right text-pink-400 italic">— Dari Abang yang sayangg sama kamuuu</p>
+    </div>
+  </section>
+
+  <!-- Galeri Kenangan -->
+  <section class="max-w-4xl w-full px-6 py-10">
+    <h3 class="text-2xl font-semibold text-pink-700 mb-6 text-center">Kenangan Kita, Vira 💕</h3>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <img src="assets/images/image-1.jpg" class="rounded-xl shadow-lg" />
+      <img src="assets/images/image-2.jpg" class="rounded-xl shadow-lg" />
+      <img src="assets/images/image-3.jpg" class="rounded-xl shadow-lg" />
+      <img src="assets/images/image-4.jpg" class="rounded-xl shadow-lg" />
+    </div>
+  </section>
+
+  <!-- Kejutan -->
+  <!-- <section class="text-center py-10">
+    <button onclick="showSurprise()" class="px-8 py-3 bg-yellow-400 text-pink-800 font-semibold rounded-xl shadow hover:bg-yellow-500 transition-all">
+      Klik untuk Lihat Kejutan 🎁
+    </button>
+  </section> -->
+
+  <!-- Penutup -->
+  <section class="py-16 text-center">
+    <h4 id="ending" class="text-3xl romantic-font text-pink-700">Aku sayang kamu... 💌</h4>
+    <p class="text-gray-600 mt-4">Selamat Hari Pacar Nasional, 1 Agustus 2025 — milik kita berdua.</p>
+  </section>
+
+  <!-- Animasi Anime.js -->
+  <script>
+    anime({
+      targets: '#greeting',
+      opacity: [0, 1],
+      translateY: [-50, 0],
+      duration: 1500,
+      delay: 300,
+      easing: 'easeOutExpo'
+    });
+
+    anime({
+      targets: '#intro',
+      opacity: [0, 1],
+      translateY: [-30, 0],
+      duration: 1500,
+      delay: 1000,
+      easing: 'easeOutExpo'
+    });
+
+    anime({
+      targets: '#letter',
+      opacity: [0, 1],
+      scale: [0.9, 1],
+      delay: 1800,
+      duration: 1200,
+      easing: 'easeOutBack'
+    });
+
+    anime({
+      targets: '#ending',
+      opacity: [0, 1],
+      delay: 3000,
+      duration: 1200,
+      easing: 'easeOutCubic'
+    });
+
+    function showSurprise() {
+      Swal.fire({
+        title: "🎉 Kejutan buat kamu, Vira!",
+        text: "Aku udah nyiapin makan malam spesial buat kita. Dress up ya cantikku 💕",
+        icon: "success",
+        confirmButtonText: "Awww 😍",
+        confirmButtonColor: "#ec4899"
+      });
+    }
+
+    function playMusic() {
+      const music = document.getElementById("romanticMusic");
+      music.play();
+    }
+  </script>
+</body>
+</html>
